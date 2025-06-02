@@ -1,14 +1,77 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Revisão Matriz</title>
 </head>
+<style>
+    .container {
+        background-color: blue;
+        width: 300px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        justify-items: center;
+    }
+
+    .item {
+        background-color: red;
+        width: 50px;
+        margin: 5px;
+        text-align: center;
+        border-radius: 5px;
+    }
+</style>
+
 <body>
-    
+
+    <div class="container" id="div_matriz">
+        <!--<div class="item">X</div>-->
+    </div>
+
+    <button onclick="exibirMatriz()">Exibir matriz</button>
+
+    <input type="number" id="ipt_linha" placeholder="LINHA">
+    <input type="number" id="ipt_coluna" placeholder="COLUNA">
+    <button onclick="consultarMatriz()">Consultar matriz</button>
+    <div id="resposta"></div>
+
 </body>
-    <script>
-        
-    </script>
+<script>
+    let mensagem = '';
+    let matriz = [];
+
+    function exibirMatriz() {
+
+        let qtdLinha = 3;
+        let qtdColuna = 3;
+
+        let valorInicial = 5;
+
+        for (let linha = 0; linha < qtdLinha; linha++) {
+            matriz[linha] = [];
+            for (let coluna = 0; coluna < qtdColuna; coluna++) {
+                matriz[linha][coluna] = valorInicial;
+                valorInicial += 5;
+
+                //preenchi. agr vou colocar no html
+                div_matriz.innerHTML += `
+                    <div class="item">${matriz[linha][coluna]}</div>    
+                `;
+            }
+        }
+        console.log(matriz);
+    }
+
+    function consultarMatriz(){
+        let linha = Number(ipt_linha.value);
+        let coluna = Number(ipt_coluna.value);
+
+        let valor = matriz[linha][coluna];
+
+        resposta.innerHTML = `O valor da linha ${linha} e da coluna ${coluna} é ${valor}`;
+    }
+
+</script>
 </html>
